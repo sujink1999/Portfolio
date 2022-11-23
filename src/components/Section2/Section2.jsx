@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import Comment from "../Comment/Comment";
 import DiverOnTop from "../../assets/svgs/DiverOnTop";
 import JellyFish from "../../assets/svgs/JellyFish";
+import { useWindowSize } from "react-use";
 
 const Section2 = () => {
     const containerRef = useRef();
@@ -60,12 +61,14 @@ const Section2 = () => {
             image: "expressjs",
         },
     ];
+    const { width } = useWindowSize();
 
     const tentacleHeight = [100, 70, 90, 65, 100, 80, 95];
 
     const [displayText, setDisplayText] = useState("");
 
     useEffect(() => {
+        if (width < 600) return;
         let ctx = gsap.context(() => {
             let t1 = gsap.timeline({
                 scrollTrigger: {
@@ -128,7 +131,7 @@ const Section2 = () => {
                         My interest in software development started way back in
                         2016 when I built an android app to keep track of my
                         expenses. Fast Forward to today, I've been part of many
-                        hackathons building multiple projects (won 8/14), been
+                        hackathons building multiple projects (won 8/14),
                         featured in{" "}
                         <a
                             className="hindu-link"

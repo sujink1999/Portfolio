@@ -8,11 +8,14 @@ import { DiverStanding } from "../../assets/svgs/DiverStanding";
 import { DiverJumping } from "../../assets/svgs/DiverJumping";
 import DiverFalling from "../../assets/svgs/DiverFalling";
 import Comment from "../Comment/Comment";
+import { useWindowSize } from "react-use";
 
 const Section1 = () => {
     const [imageIndex, setImageIndex] = useState(0);
     const indexRef = useRef(0);
     const [showComment, setShowComment] = useState(true);
+
+    const { width } = useWindowSize();
 
     const onUpdate = (e) => {
         const { progress } = e;
@@ -37,6 +40,7 @@ const Section1 = () => {
     }, [imageIndex]);
 
     useEffect(() => {
+        if (width < 600) return;
         let ctx = gsap.context(() => {
             gsap.to(".stand", {
                 scrollTrigger: {
@@ -52,7 +56,7 @@ const Section1 = () => {
                     trigger: ".one",
                     onUpdate: onUpdate,
                     start: "top top",
-                    scrub: 1,
+                    scrub: true,
                 },
             });
 
@@ -60,16 +64,6 @@ const Section1 = () => {
                 y: "40vh",
                 scale: 1.4,
                 duration: 3,
-            });
-
-            gsap.to(".sun", {
-                scrollTrigger: {
-                    trigger: ".one",
-                    start: "top top",
-                    scrub: 1,
-                },
-                bottom: 0,
-                right: 0,
             });
         });
 
@@ -102,7 +96,7 @@ const Section1 = () => {
                             <span>
                                 Hi! I'm Sujin
                                 <br />
-                                <br />A generalist and a <br />
+                                <br />A generalist and <br />
                                 polyglot builder
                             </span>
                         }

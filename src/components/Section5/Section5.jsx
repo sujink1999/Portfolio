@@ -12,12 +12,16 @@ import Comment from "../Comment/Comment";
 import { ReactComponent as MailRuin } from "../../assets/svgs/mail-ruin.svg";
 import { ReactComponent as GithubRuin } from "../../assets/svgs/github-ruin.svg";
 import { ReactComponent as LinkedInRuin } from "../../assets/svgs/linkedin-ruin.svg";
+import { useWindowSize } from "react-use";
 
 const Section5 = () => {
     const containerRef = useRef();
     const [isVisible, setIsVisible] = useState(true);
+    const { width } = useWindowSize();
 
     useEffect(() => {
+        if (width < 600) return;
+
         let ctx = gsap.context(() => {
             let t1 = gsap.timeline({
                 scrollTrigger: {
@@ -121,7 +125,12 @@ const Section5 = () => {
                 <Ruins width={150} className="ruins" />
                 <DiverMeditating className="diver-med breathe" width={120} />
                 {!isVisible && <div className="dark-gradient"></div>}
-                <a className="bottom-text" href="v" target="_blank">
+                <a
+                    className="bottom-text"
+                    href="https://github.com/sujink1999/Portfolio"
+                    target="_blank"
+                    rel="noreferrer"
+                >
                     {"Designed and Built with ❤️ using ReactJs and Figma"}
                 </a>
             </section>

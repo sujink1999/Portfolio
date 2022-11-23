@@ -6,10 +6,12 @@ import DiverRightSwim from "../../assets/svgs/DiverRightSwim";
 import { InvertedCrab } from "../../assets/svgs/InvertedCrab";
 import BannerBottom from "../../assets/svgs/BannerBottom";
 import Comment from "../Comment/Comment";
+import { useWindowSize } from "react-use";
 
 const Section4 = () => {
     const containerRef = useRef();
     const [pipeIndex, setPipeIndex] = useState(0);
+    const { width } = useWindowSize();
 
     const companies = ["FUTURYZE", "MUDREX", "SWIXDAO", "GOGO"];
 
@@ -73,6 +75,8 @@ const Section4 = () => {
     ];
 
     useEffect(() => {
+        if (width < 600) return;
+
         let ctx = gsap.context(() => {
             let t1 = gsap.timeline({
                 scrollTrigger: {

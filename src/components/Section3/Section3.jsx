@@ -5,11 +5,13 @@ import { gsap } from "gsap";
 import { DiverLookdown } from "../../assets/svgs/DiverLookdown";
 import Comment from "../Comment/Comment";
 import ProjectCard from "../ProjectCard/ProjectCard";
+import { useWindowSize } from "react-use";
 
 const Section3 = () => {
     const headRef = useRef();
     const boxCenter = useRef(null);
     const containerRef = useRef();
+    const { width } = useWindowSize();
 
     useEffect(() => {
         let boxBoundingRect = headRef.current?.getBoundingClientRect?.();
@@ -63,6 +65,7 @@ const Section3 = () => {
     }, []);
 
     useEffect(() => {
+        if (width < 600) return;
         let ctx = gsap.context(() => {
             let t1 = gsap.timeline({
                 scrollTrigger: {
